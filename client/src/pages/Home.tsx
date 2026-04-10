@@ -93,7 +93,7 @@ function SectionImage({ src, alt, caption }: { src: string; alt: string; caption
 }
 
 // ─── GIF-style Video — autoplay, muted, loop, no controls ────────────────────
-function VideoGif({ src, caption }: { src: string; caption?: string }) {
+function VideoGif({ src, caption, poster }: { src: string; caption?: string; poster?: string }) {
   const { ref, visible } = useFadeIn();
   return (
     <div
@@ -111,6 +111,31 @@ function VideoGif({ src, caption }: { src: string; caption?: string }) {
         muted
         loop
         playsInline
+        preload="none"
+        poster={poster}
+        style={{ width: "100%", height: "auto", display: "block", borderRadius: "4px" }}
+      />
+      {caption && (
+        <p style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.78rem", color: "#777", marginTop: "0.5rem", fontStyle: "italic", textAlign: "center" }}>
+          {caption}
+        </p>
+      )}
+    </div>
+  );
+}
+
+// ─── Above-Fold Video — eager preload + poster for instant above-fold display ──────
+function AboveFoldVideo({ src, poster, caption }: { src: string; poster: string; caption?: string }) {
+  return (
+    <div style={{ margin: "2rem 0" }}>
+      <video
+        src={src}
+        autoPlay
+        muted
+        loop
+        playsInline
+        preload="metadata"
+        poster={poster}
         style={{ width: "100%", height: "auto", display: "block", borderRadius: "4px" }}
       />
       {caption && (
@@ -252,7 +277,12 @@ export default function Home() {
 
 
         {/* ★ ABOVE THE FOLD VIDEO — directly under main headline+subheadline ★ */}
-        <VideoGif src={VID_ABOVE_FOLD} caption="The protocol applied to celebrity scalps every morning for 18 years. Now available to everyone." />
+        {/* Uses AboveFoldVideo with poster for instant display while video loads */}
+        <AboveFoldVideo
+          src={VID_ABOVE_FOLD}
+          poster="https://d2xsxph8kpxj0f.cloudfront.net/310519663529409853/3AEXRUJeuYifWExCNaLMLt/above-fold-poster_c8cf7a20.jpg"
+          caption="The protocol applied to celebrity scalps every morning for 18 years. Now available to everyone."
+        />
 
         {/* Author Byline */}
         <div style={{ display: "flex", alignItems: "center", gap: "1rem", padding: "1rem 0", borderTop: "1px solid #D8D4CA", borderBottom: "1px solid #D8D4CA", marginBottom: "2rem", flexWrap: "wrap" }}>
