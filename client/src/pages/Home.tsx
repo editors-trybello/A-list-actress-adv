@@ -683,9 +683,6 @@ export default function Home() {
         {/* ─── SECTION: Proof ─── */}
         <h2 style={h2}>Proof That Atonement Works</h2>
 
-        {/* Before/After 12 weeks close-up */}
-        <SectionImage src={IMG_BEFORE_AFTER_12W} alt="Before and after 12 weeks — bald scalp to thick hair regrowth. Unretouched photo." caption="Unretouched photo. Clinical observation, 2026. 12 weeks of Hair Helper Spray." />
-
         {/* Results video — GIF style */}
         <VideoGif src={VID_RESULTS} caption="Real results from real women. No filters. No extensions." />
 
@@ -881,6 +878,9 @@ export default function Home() {
 
         {/* ─── SECTION: A Letter to You ─── */}
         <h2 style={h2}>A Letter to You</h2>
+
+        {/* Before/After 12-week results — moved here per user request */}
+        <SectionImage src={IMG_BEFORE_AFTER_12W} alt="Before and after 12 weeks — bald scalp to thick hair regrowth. Unretouched photo." caption="Unretouched photo. Clinical observation, 2026. 12 weeks of Hair Helper Spray." />
 
         <div style={body}>
           <p style={p}>I don't know your name.</p>
