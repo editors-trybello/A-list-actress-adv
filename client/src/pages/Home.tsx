@@ -30,6 +30,7 @@ const IMG_CELEBRITY_VS      = "https://d2xsxph8kpxj0f.cloudfront.net/31051966352
 const IMG_DHT_STAGES        = "https://d2xsxph8kpxj0f.cloudfront.net/310519663529409853/3AEXRUJeuYifWExCNaLMLt/hf_20260408_132918_3477f5dc-225d-4f59-9064-3bc6009727b0_613c3740.png";
 const IMG_HOLLYWOOD_SET     = "https://d2xsxph8kpxj0f.cloudfront.net/310519663529409853/3AEXRUJeuYifWExCNaLMLt/hf_20260408_133431_492a1f39-faa7-4f37-af60-b20fa99d2572_3430b986.png";
 const IMG_BEFORE_AFTER_12W  = "https://d2xsxph8kpxj0f.cloudfront.net/310519663529409853/3AEXRUJeuYifWExCNaLMLt/hf_20260408_134147_08908866-2e97-4eab-95d5-e4fdb9bfe4bd_797b977d.png";
+const IMG_DR_HOLMES_OFFICIAL = "https://d2xsxph8kpxj0f.cloudfront.net/310519663529409853/3AEXRUJeuYifWExCNaLMLt/dr-holmes-product-official_cf1d3127.webp";
 const IMG_WOMAN_IN_CHAIR4   = "https://d2xsxph8kpxj0f.cloudfront.net/310519663529409853/3AEXRUJeuYifWExCNaLMLt/adv-woman-in-chair4-exr7svjKMK2eR3yBSDe3sQ.webp";
 const IMG_TIMELINE_JOURNEY  = "https://d2xsxph8kpxj0f.cloudfront.net/310519663529409853/3AEXRUJeuYifWExCNaLMLt/adv-timeline-journey-2oMSksd9EdCtD238Xc5efb.webp";
 const IMG_LETTER_WRITING    = "https://d2xsxph8kpxj0f.cloudfront.net/310519663529409853/3AEXRUJeuYifWExCNaLMLt/adv-letter-writing-8t2sNYrLPMzoDZQpvuce6Y.webp";
@@ -582,8 +583,8 @@ export default function Home() {
         {/* ─── SECTION: The Doctor ─── */}
         <h2 style={h2}>The Doctor Who Understood</h2>
 
-        {/* Dr. Holmes + product image */}
-        <SectionImage src={IMG_DR_HOLMES_PRODUCT} alt="Dr. Yolanda Holmes, MD, FAAD — U.S. Board Certified Dermatologist with Hair Helper Spray" caption="Dr. Yolanda Holmes, MD, FAAD. U.S. Board-Certified Dermatologist. She'd been publishing about topical DHT blockers for over a decade — and had been punished for it." />
+        {/* Dr. Holmes official portrait with product — user-supplied image */}
+        <SectionImage src={IMG_DR_HOLMES_OFFICIAL} alt="Dr. Yolanda Holmes, MD, Dermatology — U.S. Board Certified, with Hair Helper Spray" caption="Dr. Yolanda Holmes, MD, FAAD. U.S. Board-Certified Dermatologist. She’d been publishing about topical DHT blockers for over a decade — and had been punished for it." />
 
         <div style={body}>
           <p style={p}>I found Dr. Holmes through a research paper. She was a board-certified dermatologist — over 15 years specializing in women's hair and scalp conditions, affiliated with Howard University Hospital and MedStar Washington Hospital Center. She'd been publishing about DHT in women, about topical botanical blockers, about why the standard of care was failing female patients.</p>
