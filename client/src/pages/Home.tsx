@@ -30,6 +30,8 @@ const IMG_CELEBRITY_VS      = "https://d2xsxph8kpxj0f.cloudfront.net/31051966352
 const IMG_DHT_STAGES        = "https://d2xsxph8kpxj0f.cloudfront.net/310519663529409853/3AEXRUJeuYifWExCNaLMLt/hf_20260408_132918_3477f5dc-225d-4f59-9064-3bc6009727b0_613c3740.png";
 const IMG_HOLLYWOOD_SET     = "https://d2xsxph8kpxj0f.cloudfront.net/310519663529409853/3AEXRUJeuYifWExCNaLMLt/hf_20260408_133431_492a1f39-faa7-4f37-af60-b20fa99d2572_3430b986.png";
 const IMG_BEFORE_AFTER_12W  = "https://d2xsxph8kpxj0f.cloudfront.net/310519663529409853/3AEXRUJeuYifWExCNaLMLt/hf_20260408_134147_08908866-2e97-4eab-95d5-e4fdb9bfe4bd_797b977d.png";
+const IMG_TIMELINE_JOURNEY  = "https://d2xsxph8kpxj0f.cloudfront.net/310519663529409853/3AEXRUJeuYifWExCNaLMLt/adv-timeline-journey-2oMSksd9EdCtD238Xc5efb.webp";
+const IMG_LETTER_WRITING    = "https://d2xsxph8kpxj0f.cloudfront.net/310519663529409853/3AEXRUJeuYifWExCNaLMLt/adv-letter-writing-8t2sNYrLPMzoDZQpvuce6Y.webp";
 
 // ─── Countdown Timer Hook ─────────────────────────────────────────────────────
 function useCountdown(initialSeconds: number) {
@@ -543,6 +545,9 @@ export default function Home() {
         {/* ─── SECTION: The Phone Call ─── */}
         <h2 style={h2}>The Phone Call That Broke Me</h2>
 
+        {/* Phone call / FaceTime image — placed directly under headline */}
+        <SectionImage src={IMG_FACETIME} alt="FaceTime screenshot of Rachel smiling with thick healthy hair" caption={`Week 8. Rachel FaceTimed wearing her hair down. She didn't say anything about it. She just... wore it down. Like it was nothing.`} />
+
         <div style={body}>
           <p style={p}>January 2024.</p>
           <p style={p}>My sister called me on a Sunday night. Rachel. Three years younger than me. Funny, loud, the kind of person who makes everyone around her feel lighter.</p>
@@ -564,8 +569,7 @@ export default function Home() {
           <p style={p}>Her name was Dr. Yolanda Holmes.</p>
         </div>
 
-        {/* FaceTime screenshot — Rachel's results */}
-        <SectionImage src={IMG_FACETIME} alt="FaceTime screenshot of Rachel smiling with thick healthy hair" caption={`Week 8. Rachel FaceTimed wearing her hair down. She didn't say anything about it. She just... wore it down. Like it was nothing.`} />
+
 
         <hr style={divider} />
 
@@ -753,6 +757,9 @@ export default function Home() {
         {/* ─── SECTION: Timeline ─── */}
         <h2 style={h2}>What I Wish I Could Have Given You Sooner</h2>
 
+        {/* 12-week journey journal image — placed directly under headline */}
+        <SectionImage src={IMG_TIMELINE_JOURNEY} alt="12-week hair growth journal with botanical ingredients and dropper bottle" caption="The 12-week protocol, documented. Week by week, follicle by follicle." />
+
         <div style={{ margin: "1.5rem 0" }}>
           {[
             { weeks: "Weeks 1–2", milestone: "Less hair in your drain. Less on your pillow. Less on your brush. The shedding slows — you'll feel it before you see it." },
@@ -831,14 +838,14 @@ export default function Home() {
         {/* ─── SECTION: Guarantee ─── */}
         <h2 style={h2}>You Owe Me Nothing. I Owe You Everything.</h2>
 
+        {/* 120-Day Guarantee Seal — placed directly under headline */}
+        <SectionImage src={IMG_GUARANTEE_SEAL} alt="120 Day Money Back Guarantee — Official Certification of Promise, signed by Renée Halsted and Dr. Yolanda Holmes" caption="Signed by both Renée Halsted and Dr. Yolanda Holmes, MD, FAAD. Our personal promise." />
+
         <div style={body}>
           <p style={p}>You've already spent enough money on things that didn't work.</p>
           <p style={p}>You've already trusted enough products that let you down. You've already felt the sting of opening a new bottle with hope and throwing it away three months later with nothing to show for it.</p>
           <p style={p}>The last thing I'm going to do is add financial risk to the emotional risk you've already been through.</p>
         </div>
-
-        {/* 120-Day Guarantee Seal */}
-        <SectionImage src={IMG_GUARANTEE_SEAL} alt="120 Day Money Back Guarantee — Official Certification of Promise, signed by Renée Halsted and Dr. Yolanda Holmes" caption="Signed by both Renée Halsted and Dr. Yolanda Holmes, MD, FAAD. Our personal promise." />
 
         <div style={{ background: "#1B4D3E", borderRadius: "6px", padding: "1.75rem", margin: "1.5rem 0" }}>
           <p style={{ fontFamily: "'Playfair Display', serif", fontWeight: 800, fontSize: "1.3rem", color: "white", marginBottom: "0.75rem" }}>
@@ -867,6 +874,9 @@ export default function Home() {
 
         {/* ─── SECTION: A Letter to You ─── */}
         <h2 style={h2}>A Letter to You</h2>
+
+        {/* Letter-writing scene image — placed directly under headline */}
+        <SectionImage src={IMG_LETTER_WRITING} alt="Woman writing a heartfelt letter at a wooden desk by a window" caption="18 years of silence. One letter to end it." />
 
         <div style={body}>
           <p style={p}>I don't know your name.</p>
