@@ -4,19 +4,32 @@
  * Colors: Warm off-white bg, forest green #1B4D3E, amber #B8860B, near-black text
  * Fonts: Playfair Display (headlines), Merriweather (body), DM Sans (UI)
  * Layout: Single editorial column, max 720px, with publication header
+ *
+ * ALL ASSETS: Real client assets uploaded to CDN — no AI placeholders
  */
 
 import { useEffect, useRef, useState } from "react";
 
-// ─── Image CDN URLs ───────────────────────────────────────────────────────────
-const IMG_HERO = "https://d2xsxph8kpxj0f.cloudfront.net/310519663529409853/3AEXRUJeuYifWExCNaLMLt/adv-hero-confession-KoTy25MSfLx93q5GihNpky.webp";
-const IMG_SALON = "https://d2xsxph8kpxj0f.cloudfront.net/310519663529409853/3AEXRUJeuYifWExCNaLMLt/adv-salon-chair-8NkqeTURqfmnBhfff5QLMC.webp";
-const IMG_HOLLYWOOD = "https://d2xsxph8kpxj0f.cloudfront.net/310519663529409853/3AEXRUJeuYifWExCNaLMLt/adv-hollywood-backstage-WiG5Zgx4Mrp67iJLPokAQJ.webp";
-const IMG_FAILED = "https://d2xsxph8kpxj0f.cloudfront.net/310519663529409853/3AEXRUJeuYifWExCNaLMLt/adv-failed-products-kvK8xeEFuAtKHne6ACHaHT.webp";
-const IMG_BOTANICALS = "https://d2xsxph8kpxj0f.cloudfront.net/310519663529409853/3AEXRUJeuYifWExCNaLMLt/adv-botanical-ingredients-T6HcV2aRMfjgpM8Wbey6H4.webp";
-const IMG_PHONE = "https://d2xsxph8kpxj0f.cloudfront.net/310519663529409853/3AEXRUJeuYifWExCNaLMLt/adv-phone-call-GBLUJGtMGEE9Sg67joBppm.webp";
-const IMG_PRODUCT = "https://d2xsxph8kpxj0f.cloudfront.net/310519663529409853/3AEXRUJeuYifWExCNaLMLt/adv-product-reveal-NbR5X8gXxJeUCTBmxwD4cv.webp";
-const IMG_DOCTOR = "https://d2xsxph8kpxj0f.cloudfront.net/310519663529409853/3AEXRUJeuYifWExCNaLMLt/adv-dr-holmes-NgfUVh5Ly2p8ChgiTcD7Bd.webp";
+// ─── CDN Asset URLs ───────────────────────────────────────────────────────────
+// Videos (used as autoplay muted loop — GIF-style)
+const VID_ABOVE_FOLD    = "https://d2xsxph8kpxj0f.cloudfront.net/310519663529409853/3AEXRUJeuYifWExCNaLMLt/Abovethefoldadv_5b253856.mp4";
+const VID_PRODUCT_INTRO = "https://d2xsxph8kpxj0f.cloudfront.net/310519663529409853/3AEXRUJeuYifWExCNaLMLt/productintroduction_0fd5b9d4.mp4";
+const VID_RESULTS       = "https://d2xsxph8kpxj0f.cloudfront.net/310519663529409853/3AEXRUJeuYifWExCNaLMLt/hf_20260410_093111_67274f7b-769e-4b1f-8477-f16b0b96d5ed_08665034.mp4";
+
+// Images
+const IMG_DR_HOLMES_PRODUCT = "https://d2xsxph8kpxj0f.cloudfront.net/310519663529409853/3AEXRUJeuYifWExCNaLMLt/dryolandaholmes+trybellohairhelperspray_25a314ae.webp";
+const IMG_INGREDIENTS       = "https://d2xsxph8kpxj0f.cloudfront.net/310519663529409853/3AEXRUJeuYifWExCNaLMLt/trybelloingredients_c211e0e0.webp";
+const IMG_DR_HOLMES_LECTURE = "https://d2xsxph8kpxj0f.cloudfront.net/310519663529409853/3AEXRUJeuYifWExCNaLMLt/dryolandaholmes_ad94cf0f.jpeg";
+const IMG_GUARANTEE_SEAL    = "https://d2xsxph8kpxj0f.cloudfront.net/310519663529409853/3AEXRUJeuYifWExCNaLMLt/hf_20260408_133139_2051e41f-7abd-4b8c-97d7-98f69c244410_5c7a205f.png";
+const IMG_FACETIME          = "https://d2xsxph8kpxj0f.cloudfront.net/310519663529409853/3AEXRUJeuYifWExCNaLMLt/hf_20260408_133111_9c50b3de-91f2-4c59-a08a-ad617ec5f550_74e64f4a.png";
+const IMG_BEFORE_AFTER_GRID = "https://d2xsxph8kpxj0f.cloudfront.net/310519663529409853/3AEXRUJeuYifWExCNaLMLt/hf_20260408_133121_7779fd89-edec-4e0d-b860-eebd0e22adde_4ff99c57.png";
+const IMG_PRICING           = "https://d2xsxph8kpxj0f.cloudfront.net/310519663529409853/3AEXRUJeuYifWExCNaLMLt/hf_20260408_133518_d160bd60-5384-4a6e-802a-5e3aed7256f7_47d453b4.png";
+const IMG_WHAT_I_TOLD       = "https://d2xsxph8kpxj0f.cloudfront.net/310519663529409853/3AEXRUJeuYifWExCNaLMLt/hf_20260408_134021_58a8c422-97ea-4a1d-ab44-9093359e9320_c3ec3d50.png";
+const IMG_TRASH_CAN         = "https://d2xsxph8kpxj0f.cloudfront.net/310519663529409853/3AEXRUJeuYifWExCNaLMLt/hf_20260408_132935_bfcbb607-27bb-4ce3-9aac-d8d30b46bded_cfe1a940.png";
+const IMG_CELEBRITY_VS      = "https://d2xsxph8kpxj0f.cloudfront.net/310519663529409853/3AEXRUJeuYifWExCNaLMLt/hf_20260410_092057_94de24a1-06b4-48ab-a677-452bb6034827_7b2ad96c.png";
+const IMG_DHT_STAGES        = "https://d2xsxph8kpxj0f.cloudfront.net/310519663529409853/3AEXRUJeuYifWExCNaLMLt/hf_20260408_132918_3477f5dc-225d-4f59-9064-3bc6009727b0_613c3740.png";
+const IMG_HOLLYWOOD_SET     = "https://d2xsxph8kpxj0f.cloudfront.net/310519663529409853/3AEXRUJeuYifWExCNaLMLt/hf_20260408_133431_492a1f39-faa7-4f37-af60-b20fa99d2572_3430b986.png";
+const IMG_BEFORE_AFTER_12W  = "https://d2xsxph8kpxj0f.cloudfront.net/310519663529409853/3AEXRUJeuYifWExCNaLMLt/hf_20260408_134147_08908866-2e97-4eab-95d5-e4fdb9bfe4bd_797b977d.png";
 
 // ─── Countdown Timer Hook ─────────────────────────────────────────────────────
 function useCountdown(initialSeconds: number) {
@@ -40,7 +53,7 @@ function useFadeIn() {
   useEffect(() => {
     const observer = new IntersectionObserver(
       ([entry]) => { if (entry.isIntersecting) { setVisible(true); observer.disconnect(); } },
-      { threshold: 0.1 }
+      { threshold: 0.05 }
     );
     if (ref.current) observer.observe(ref.current);
     return () => observer.disconnect();
@@ -48,7 +61,7 @@ function useFadeIn() {
   return { ref, visible };
 }
 
-// ─── Section Image Component ──────────────────────────────────────────────────
+// ─── Section Image — preserves original ratio, no cropping ───────────────────
 function SectionImage({ src, alt, caption }: { src: string; alt: string; caption?: string }) {
   const { ref, visible } = useFadeIn();
   return (
@@ -64,10 +77,10 @@ function SectionImage({ src, alt, caption }: { src: string; alt: string; caption
       <img
         src={src}
         alt={alt}
-        style={{ width: "100%", borderRadius: "4px", display: "block", maxHeight: "420px", objectFit: "cover" }}
+        style={{ width: "100%", height: "auto", display: "block", borderRadius: "4px" }}
       />
       {caption && (
-        <p style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.8rem", color: "#777", marginTop: "0.5rem", fontStyle: "italic", textAlign: "center" }}>
+        <p style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.78rem", color: "#777", marginTop: "0.5rem", fontStyle: "italic", textAlign: "center" }}>
           {caption}
         </p>
       )}
@@ -75,7 +88,37 @@ function SectionImage({ src, alt, caption }: { src: string; alt: string; caption
   );
 }
 
-// ─── CTA Block Component ──────────────────────────────────────────────────────
+// ─── GIF-style Video — autoplay, muted, loop, no controls ────────────────────
+function VideoGif({ src, caption }: { src: string; caption?: string }) {
+  const { ref, visible } = useFadeIn();
+  return (
+    <div
+      ref={ref}
+      style={{
+        opacity: visible ? 1 : 0,
+        transform: visible ? "translateY(0)" : "translateY(20px)",
+        transition: "opacity 0.6s ease, transform 0.6s ease",
+        margin: "2rem 0",
+      }}
+    >
+      <video
+        src={src}
+        autoPlay
+        muted
+        loop
+        playsInline
+        style={{ width: "100%", height: "auto", display: "block", borderRadius: "4px" }}
+      />
+      {caption && (
+        <p style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.78rem", color: "#777", marginTop: "0.5rem", fontStyle: "italic", textAlign: "center" }}>
+          {caption}
+        </p>
+      )}
+    </div>
+  );
+}
+
+// ─── CTA Block ────────────────────────────────────────────────────────────────
 function CTABlock({ countdown }: { countdown: string }) {
   return (
     <div style={{ background: "#F2F0EB", border: "1px solid #D8D4CA", borderRadius: "6px", padding: "2rem", margin: "2.5rem 0", textAlign: "center" }}>
@@ -90,11 +133,10 @@ function CTABlock({ countdown }: { countdown: string }) {
       </p>
       <a
         href="https://trybello.com"
-        className="cta-button cta-pulse"
-        style={{ display: "block", background: "#1B4D3E", color: "white", fontFamily: "'DM Sans', sans-serif", fontWeight: 700, fontSize: "1rem", letterSpacing: "0.06em", textTransform: "uppercase", textAlign: "center", padding: "1.1rem 2rem", borderRadius: "4px", textDecoration: "none", marginBottom: "1rem" }}
-      >
-        🔒 Claim My 60% Discount Now — Before It's Gone
-      </a>
+style={{ display: "block", background: "#1B4D3E", color: "white", fontFamily: "'DM Sans', sans-serif", fontWeight: 700, fontSize: "1rem", letterSpacing: "0.06em", textTransform: "uppercase", textAlign: "center", padding: "1.1rem 2rem", borderRadius: "4px", textDecoration: "none", marginBottom: "1rem" }}
+          >
+            {"🔒 Claim My 60% Discount Now — Before It's Gone"}
+          </a>
       <div style={{ display: "flex", flexWrap: "wrap", justifyContent: "center", gap: "0.75rem", marginTop: "0.75rem" }}>
         {["📦 Free Expedited Shipping", "💯 120-Day Money-Back Guarantee", "🔐 Secure Checkout"].map((item) => (
           <span key={item} style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.78rem", color: "#444", background: "white", border: "1px solid #D8D4CA", borderRadius: "3px", padding: "0.3rem 0.6rem" }}>
@@ -104,11 +146,6 @@ function CTABlock({ countdown }: { countdown: string }) {
       </div>
     </div>
   );
-}
-
-// ─── Star Rating ──────────────────────────────────────────────────────────────
-function Stars() {
-  return <span style={{ color: "#F0A500", fontSize: "0.9rem" }}>★★★★★</span>;
 }
 
 // ─── Main Component ───────────────────────────────────────────────────────────
@@ -123,7 +160,7 @@ export default function Home() {
       const docHeight = document.documentElement.scrollHeight - window.innerHeight;
       const pct = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
       setProgress(pct);
-      setShowSticky(pct > 35);
+      setShowSticky(pct > 30);
     };
     window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
@@ -136,9 +173,7 @@ export default function Home() {
     color: "#1C1C1E",
   };
 
-  const p: React.CSSProperties = {
-    marginBottom: "1.4rem",
-  };
+  const p: React.CSSProperties = { marginBottom: "1.4rem" };
 
   const h2: React.CSSProperties = {
     fontFamily: "'Playfair Display', Georgia, serif",
@@ -210,29 +245,29 @@ export default function Home() {
           I Kept A-List Actresses' Hair Thick for 18 Years While 40 Million Women Went Bald. I Can't Live With That Anymore.
         </h1>
 
-        {/* Deck */}
+        {/* Deck / Subheadline */}
         <p style={{ fontFamily: "'Merriweather', serif", fontWeight: 700, fontSize: "1.1rem", lineHeight: 1.6, color: "#333", marginBottom: "1.5rem", borderLeft: "4px solid #B8860B", paddingLeft: "1rem" }}>
           A celebrity stylist's public confession: the plant-based DHT protocol she was forbidden from sharing, the famous clients who begged her to stay quiet, and why she's putting everything on the line to give every woman over 40 access to what actually works.
         </p>
+
+        {/* ★ ABOVE THE FOLD VIDEO — placed directly under headline+subheadline ★ */}
+        <VideoGif src={VID_ABOVE_FOLD} caption="The protocol applied to celebrity scalps every morning for 18 years. Now available to everyone." />
 
         {/* Author Byline */}
         <div style={{ display: "flex", alignItems: "center", gap: "1rem", padding: "1rem 0", borderTop: "1px solid #D8D4CA", borderBottom: "1px solid #D8D4CA", marginBottom: "2rem", flexWrap: "wrap" }}>
           <div style={{ display: "flex", gap: "0.5rem" }}>
             <div style={{ width: "42px", height: "42px", borderRadius: "50%", background: "#C8A882", display: "flex", alignItems: "center", justifyContent: "center", fontFamily: "'Playfair Display', serif", fontWeight: 700, fontSize: "1rem", color: "white", flexShrink: 0 }}>RH</div>
-            <img src={IMG_DOCTOR} alt="Dr. Yolanda Holmes" style={{ width: "42px", height: "42px", borderRadius: "50%", objectFit: "cover", flexShrink: 0 }} />
+            <img src={IMG_DR_HOLMES_PRODUCT} alt="Dr. Yolanda Holmes" style={{ width: "42px", height: "42px", borderRadius: "50%", objectFit: "cover", flexShrink: 0 }} />
           </div>
           <div>
             <p style={{ fontFamily: "'DM Sans', sans-serif", fontWeight: 600, fontSize: "0.85rem", color: "#1C1C1E", margin: 0 }}>
-              Renée Halsted, Licensed Cosmetologist &amp; Dr. Yolanda Holmes, MD, FAAD
+              Renée Halsted, Licensed Cosmetologist & Dr. Yolanda Holmes, MD, FAAD
             </p>
             <p style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.75rem", color: "#777", margin: 0 }}>
               Investigative Report · Board-Certified Dermatologist Co-Author
             </p>
           </div>
         </div>
-
-        {/* Hero Image */}
-        <SectionImage src={IMG_HERO} alt="A woman writing a confessional letter late at night" caption="The confession Renée Halsted says she should have written 15 years ago." />
 
         {/* Opening Copy */}
         <div style={body}>
@@ -253,7 +288,6 @@ export default function Home() {
 
         {/* ─── SECTION: The Woman in Chair 4 ─── */}
         <h2 style={h2}>The Woman in Chair 4</h2>
-        <SectionImage src={IMG_SALON} alt="An empty salon chair with a cape draped over it" caption="Chair 4 at Reflections Salon, Dayton, Ohio. Teresa sat here every six weeks for four years." />
 
         <div style={body}>
           <p style={p}>Before Hollywood, I was nobody special.</p>
@@ -291,7 +325,9 @@ export default function Home() {
 
         {/* ─── SECTION: Behind the Velvet Rope ─── */}
         <h2 style={h2}>Behind the Velvet Rope</h2>
-        <SectionImage src={IMG_HOLLYWOOD} alt="A glamorous Hollywood backstage styling trailer" caption="Inside the styling trailers where the real secret was kept. Every actress over 50 had the same small bottle." />
+
+        {/* Celebrity vs Regular scalp comparison */}
+        <SectionImage src={IMG_CELEBRITY_VS} alt="Celebrity scalp age 59 vs regular woman's scalp — same menopause, different protocol" caption='"Same menopause. Different protocol." The only difference was access.' />
 
         <div style={body}>
           <p style={p}>I got into celebrity work almost by accident. A friend of a friend needed a backup stylist for an awards show. I showed up, did competent work, kept my mouth shut. Someone noticed. A phone call led to another phone call. Within six months, I was on retainer.</p>
@@ -311,6 +347,12 @@ export default function Home() {
           <p style={p}>Over 18 years, I saw the same type of bottle — different doctors, different labels, same basic protocol — on every set, in every trailer, at every press junket. All the stylists knew. The makeup artists knew. The personal assistants knew. It was the most open secret in Hollywood.</p>
           <p style={p}>Nobody ever talked about it publicly.</p>
           <p style={p}>Because talking meant losing access. And access was everything.</p>
+        </div>
+
+        {/* Hollywood set product image */}
+        <SectionImage src={IMG_HOLLYWOOD_SET} alt="Hair Helper Spray on a Hollywood film set styling table" caption="The bottle that was on every set, every trailer, every press junket. For 18 years." />
+
+        <div style={body}>
           <p style={{ ...p, fontWeight: 700 }}>In Hollywood, hair loss after menopause doesn't exist. Not because it can't happen — because it was solved years ago. Quietly. Privately. For the women who could afford it. The rest of the world was never invited to know.</p>
         </div>
 
@@ -319,26 +361,8 @@ export default function Home() {
         {/* ─── SECTION: The Hormone They Solved in Secret ─── */}
         <h2 style={h2}>The Hormone They Solved in Secret</h2>
 
-        {/* DHT Mechanism Visual */}
-        <div style={{ background: "#F2F0EB", border: "1px solid #D8D4CA", borderRadius: "6px", padding: "1.5rem", margin: "1.5rem 0" }}>
-          <p style={{ fontFamily: "'DM Sans', sans-serif", fontWeight: 700, fontSize: "0.75rem", letterSpacing: "0.1em", textTransform: "uppercase", color: "#B8860B", marginBottom: "1rem" }}>
-            📊 Research Highlight: The DHT Follicle Miniaturization Process
-          </p>
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: "0.75rem", textAlign: "center" }}>
-            {[
-              { stage: "Stage 1", label: "Healthy Follicle", desc: "Full blood supply, thick hair growth", color: "#1B4D3E" },
-              { stage: "Stage 2", label: "DHT Attaches", desc: "DHT wraps around follicle, restricting flow", color: "#B8860B" },
-              { stage: "Stage 3", label: "Miniaturization", desc: "Follicle shrinks, hair thins dramatically", color: "#C0392B" },
-              { stage: "Stage 4", label: "Dormant — Not Dead", desc: "Follicle sleeps. Block DHT and it wakes up.", color: "#1B4D3E" },
-            ].map((item) => (
-              <div key={item.stage} style={{ background: "white", borderRadius: "4px", padding: "0.75rem 0.5rem", borderTop: `3px solid ${item.color}` }}>
-                <div style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.65rem", fontWeight: 700, letterSpacing: "0.08em", textTransform: "uppercase", color: item.color, marginBottom: "0.25rem" }}>{item.stage}</div>
-                <div style={{ fontFamily: "'DM Sans', sans-serif", fontWeight: 700, fontSize: "0.8rem", color: "#1C1C1E", marginBottom: "0.35rem" }}>{item.label}</div>
-                <div style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.72rem", color: "#666", lineHeight: 1.4 }}>{item.desc}</div>
-              </div>
-            ))}
-          </div>
-        </div>
+        {/* Dr. Holmes lecturing on DHT */}
+        <SectionImage src={IMG_DR_HOLMES_LECTURE} alt="Dr. Yolanda Holmes presenting menopausal hair loss and DHT to an audience" caption="Dr. Holmes presenting the DHT research that private physicians had been using for decades — while the public was told 'just accept it.'" />
 
         <div style={body}>
           <p style={p}>Eventually, the guilt got heavy enough that I started asking questions I'd been told not to ask.</p>
@@ -367,6 +391,12 @@ export default function Home() {
           <p style={p}>And the public? The 40 million women without access to a private physician?</p>
           <p style={p}>They got Minoxidil — a blood vessel dilator that doesn't touch DHT and creates lifetime dependency. They got biotin supplements that stomach acid destroys before they reach the scalp. They got $3,000 PRP injections that don't address the root cause. They got $20,000 hair transplants that DHT undermines within years.</p>
           <p style={{ ...p, fontWeight: 700 }}>They got a $12 billion industry designed to manage their desperation — not fix their hair.</p>
+        </div>
+
+        {/* DHT follicle stages medical illustration */}
+        <SectionImage src={IMG_DHT_STAGES} alt="Medical illustration showing 4 stages of DHT follicle miniaturization — Healthy, DHT Attacking, Suffocating, Dormant Not Dead" caption="The 4-stage DHT process. Stage 4 is the most important: dormant is NOT dead. Block DHT and the follicle wakes up." />
+
+        <div style={body}>
           <p style={p}>I sat in my car after that conversation and cried. Not because the science was sad. Because it was so fixable. Because Teresa didn't need a $3,000 injection or a $20,000 surgery. She needed a formula that cost less than the cookies she brought to the salon. And nobody had bothered to tell her it existed.</p>
         </div>
 
@@ -374,7 +404,9 @@ export default function Home() {
 
         {/* ─── SECTION: The Graveyard ─── */}
         <h2 style={h2}>The Graveyard of Everything I Recommended</h2>
-        <SectionImage src={IMG_FAILED} alt="A bathroom shelf with failed hair loss products" caption="The products I sold for years. Every one of them was designed to manage the problem — not solve it." />
+
+        {/* Trash can image */}
+        <SectionImage src={IMG_TRASH_CAN} alt="Failed hair loss products in a trash can with sticky note" caption={`"I'm sorry I told you to buy these. —R"`} />
 
         <div style={body}>
           <p style={p}>I need to confess something else. Something worse.</p>
@@ -383,6 +415,9 @@ export default function Home() {
           <p style={p}>I didn't know I was selling false hope. But ignorance isn't innocence.</p>
           <p style={p}>Let me show you exactly what I — and the rest of the industry — sold you. And what it actually cost.</p>
         </div>
+
+        {/* What I told you / What I knew split image */}
+        <SectionImage src={IMG_WHAT_I_TOLD} alt="Split image: What I told you (Rogaine) vs What I knew (the real spray)" caption="What I recommended to you. What I was applying in Hollywood. Same time. Same years." />
 
         {/* Failed Products Breakdown */}
         <div style={{ display: "flex", flexDirection: "column", gap: "1rem", margin: "1.5rem 0" }}>
@@ -444,7 +479,9 @@ export default function Home() {
 
         {/* ─── SECTION: The Formula ─── */}
         <h2 style={h2}>The Formula I Was Forbidden to Share</h2>
-        <SectionImage src={IMG_BOTANICALS} alt="Botanical ingredients laid out like classified documents" caption="The four core botanical compounds that appeared in every private formula — studied for decades, available to anyone who knew to look." />
+
+        {/* Ingredients product image */}
+        <SectionImage src={IMG_INGREDIENTS} alt="TryBello Hair Helper Spray in a beaker surrounded by natural botanical ingredients" caption="The four core botanical compounds that appeared in every private formula — studied for decades, available to anyone who knew to look." />
 
         <div style={body}>
           <p style={p}>After that conversation with the private dermatologist, I started doing something I'd been explicitly told not to do.</p>
@@ -497,7 +534,6 @@ export default function Home() {
 
         {/* ─── SECTION: The Phone Call ─── */}
         <h2 style={h2}>The Phone Call That Broke Me</h2>
-        <SectionImage src={IMG_PHONE} alt="A woman sitting on the edge of a bed on a phone call, distressed" caption="January 2024. My sister Rachel called on a Sunday night. I knew from the first word something was wrong." />
 
         <div style={body}>
           <p style={p}>January 2024.</p>
@@ -516,16 +552,20 @@ export default function Home() {
           <p style={p}>And in that moment — listening to my own sister describe the exact same pain I'd heard from Teresa twelve years earlier, the exact same pain I'd watched 40 million women describe online, in forums, in salon chairs across America — something inside me broke.</p>
           <p style={p}>Not cracked. Broke.</p>
           <p style={p}>Because this wasn't a stranger anymore. This wasn't a woman in chair 4 I could hug goodbye and try to forget. This was my sister. My blood. And she was suffering from something I could fix. Something I'd been able to fix for 18 years. Something I'd been keeping from every regular woman I knew while spraying it on famous scalps five days a week.</p>
-          <p style={p}>I couldn't breathe.</p>
           <p style={p}>I told Rachel I'd call her back. I hung up. Sat on the edge of my bed for a long time. Then I opened my laptop and started writing an email to the one person I thought might help me end this.</p>
           <p style={p}>Her name was Dr. Yolanda Holmes.</p>
         </div>
+
+        {/* FaceTime screenshot — Rachel's results */}
+        <SectionImage src={IMG_FACETIME} alt="FaceTime screenshot of Rachel smiling with thick healthy hair" caption={`Week 8. Rachel FaceTimed wearing her hair down. She didn't say anything about it. She just... wore it down. Like it was nothing.`} />
 
         <hr style={divider} />
 
         {/* ─── SECTION: The Doctor ─── */}
         <h2 style={h2}>The Doctor Who Understood</h2>
-        <SectionImage src={IMG_DOCTOR} alt="Dr. Yolanda Holmes, MD, FAAD — Board-Certified Dermatologist" caption="Dr. Yolanda Holmes, MD, FAAD. Board-Certified Dermatologist, Howard University Hospital. She'd been publishing about topical DHT blockers for over a decade — and had been punished for it." />
+
+        {/* Dr. Holmes + product image */}
+        <SectionImage src={IMG_DR_HOLMES_PRODUCT} alt="Dr. Yolanda Holmes, MD, FAAD — U.S. Board Certified Dermatologist with Hair Helper Spray" caption="Dr. Yolanda Holmes, MD, FAAD. U.S. Board-Certified Dermatologist. She'd been publishing about topical DHT blockers for over a decade — and had been punished for it." />
 
         <div style={body}>
           <p style={p}>I found Dr. Holmes through a research paper. She was a board-certified dermatologist — over 15 years specializing in women's hair and scalp conditions, affiliated with Howard University Hospital and MedStar Washington Hospital Center. She'd been publishing about DHT in women, about topical botanical blockers, about why the standard of care was failing female patients.</p>
@@ -537,17 +577,14 @@ export default function Home() {
         {/* Dr. Holmes Quote Block */}
         <div style={{ background: "#F2F0EB", border: "1px solid #D8D4CA", borderRadius: "6px", padding: "1.5rem", margin: "1.5rem 0" }}>
           <div style={{ display: "flex", alignItems: "center", gap: "0.75rem", marginBottom: "1rem" }}>
-            <img src={IMG_DOCTOR} alt="Dr. Holmes" style={{ width: "48px", height: "48px", borderRadius: "50%", objectFit: "cover" }} />
+            <img src={IMG_DR_HOLMES_PRODUCT} alt="Dr. Holmes" style={{ width: "48px", height: "48px", borderRadius: "50%", objectFit: "cover", objectPosition: "top" }} />
             <div>
               <p style={{ fontFamily: "'DM Sans', sans-serif", fontWeight: 700, fontSize: "0.9rem", color: "#1C1C1E", margin: 0 }}>Dr. Yolanda Holmes, MD, FAAD</p>
-              <p style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.75rem", color: "#777", margin: 0 }}>Board-Certified Dermatologist · Howard University Hospital</p>
+              <p style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.75rem", color: "#777", margin: 0 }}>Board-Certified Dermatologist · U.S. Board Certified</p>
             </div>
           </div>
           <p style={{ fontFamily: "'Merriweather', serif", fontStyle: "italic", fontSize: "0.95rem", lineHeight: 1.75, color: "#333", marginBottom: "1rem" }}>
             "I have two types of patients. Wealthy women whose concierge doctors proactively manage their hormonal health — those women rarely present with significant hair loss. And regular women — teachers, nurses, grandmothers on Medicare — who come to me in crisis. Showing me handfuls of hair. Sobbing. Asking me why nobody told them this would happen."
-          </p>
-          <p style={{ fontFamily: "'Merriweather', serif", fontStyle: "italic", fontSize: "0.95rem", lineHeight: 1.75, color: "#333", marginBottom: "1rem" }}>
-            "Same age. Same hormones. Same DHT attacking the same follicles. Wildly different outcomes."
           </p>
           <p style={{ fontFamily: "'Merriweather', serif", fontStyle: "italic", fontSize: "0.95rem", lineHeight: 1.75, color: "#333", marginBottom: "1rem" }}>
             "Your follicles are NOT dead. DHT has been wrapping around them, slowly squeezing off blood supply and nutrients, like a fist tightening around a garden hose. Eventually, the follicle shuts down. Goes dormant. But dormant is not dead. Dormant is sleeping. Dormant is waiting."
@@ -561,7 +598,9 @@ export default function Home() {
 
         {/* ─── SECTION: Atonement / Product ─── */}
         <h2 style={h2}>Atonement</h2>
-        <SectionImage src={IMG_PRODUCT} alt="TryBello Hair Helper Spray product reveal" caption="TryBello Hair Helper Spray. The same formula. The same clinical doses. Finally available to every woman." />
+
+        {/* Product introduction video — GIF style */}
+        <VideoGif src={VID_PRODUCT_INTRO} caption="TryBello Hair Helper Spray. The same formula. The same clinical doses. Finally available to every woman." />
 
         <div style={body}>
           <p style={p}>Dr. Holmes and I spent six months building what should have existed 15 years ago.</p>
@@ -625,10 +664,19 @@ export default function Home() {
         {/* ─── SECTION: Proof ─── */}
         <h2 style={h2}>Proof That Atonement Works</h2>
 
+        {/* Before/After 12 weeks close-up */}
+        <SectionImage src={IMG_BEFORE_AFTER_12W} alt="Before and after 12 weeks — bald scalp to thick hair regrowth. Unretouched photo." caption="Unretouched photo. Clinical observation, 2026. 12 weeks of Hair Helper Spray." />
+
+        {/* Results video — GIF style */}
+        <VideoGif src={VID_RESULTS} caption="Real results from real women. No filters. No extensions." />
+
+        {/* Before/After grid — 4 customers */}
+        <SectionImage src={IMG_BEFORE_AFTER_GRID} alt="4-panel before and after: Linda 54, Patricia 58, Margaret 61, Carol 62" caption="Linda (54), Patricia (58), Margaret (61), Carol (62). Real customers. Unretouched photos. Individual results may vary." />
+
         {/* Dr. Holmes Results */}
         <div style={{ background: "#F2F0EB", border: "1px solid #D8D4CA", borderRadius: "6px", padding: "1.5rem", margin: "1.5rem 0" }}>
           <div style={{ display: "flex", alignItems: "center", gap: "0.75rem", marginBottom: "1rem" }}>
-            <img src={IMG_DOCTOR} alt="Dr. Holmes" style={{ width: "40px", height: "40px", borderRadius: "50%", objectFit: "cover" }} />
+            <img src={IMG_DR_HOLMES_PRODUCT} alt="Dr. Holmes" style={{ width: "40px", height: "40px", borderRadius: "50%", objectFit: "cover", objectPosition: "top" }} />
             <div>
               <p style={{ fontFamily: "'DM Sans', sans-serif", fontWeight: 700, fontSize: "0.85rem", color: "#1C1C1E", margin: 0 }}>Dr. Yolanda Holmes — Tested It On Herself First</p>
             </div>
@@ -639,24 +687,6 @@ export default function Home() {
             { week: "Week 6", result: "My stylist asked what I was doing differently. 'Your hair feels thicker.'" },
             { week: "Week 8", result: "My part was visibly tighter. First time in years I wore my hair down without thinking about it." },
             { week: "Week 12", result: "The thickness I remembered from my thirties. Just... normal. Healthy. Mine." },
-          ].map((item) => (
-            <div key={item.week} style={{ display: "flex", gap: "1rem", marginBottom: "0.75rem", alignItems: "flex-start" }}>
-              <span style={{ fontFamily: "'DM Sans', sans-serif", fontWeight: 700, fontSize: "0.78rem", color: "#1B4D3E", background: "#C8DDD0", padding: "0.2rem 0.5rem", borderRadius: "3px", flexShrink: 0, whiteSpace: "nowrap" }}>{item.week}</span>
-              <span style={{ fontFamily: "'Merriweather', serif", fontSize: "0.88rem", lineHeight: 1.6, color: "#333" }}>{item.result}</span>
-            </div>
-          ))}
-        </div>
-
-        {/* Rachel's Results */}
-        <div style={{ background: "#F2F0EB", border: "1px solid #D8D4CA", borderRadius: "6px", padding: "1.5rem", margin: "1.5rem 0" }}>
-          <p style={{ fontFamily: "'DM Sans', sans-serif", fontWeight: 700, fontSize: "0.85rem", color: "#1C1C1E", marginBottom: "1rem" }}>
-            Renée's Sister Rachel — The First Bottle Sent
-          </p>
-          {[
-            { week: "Week 2", result: "She texted me a photo of her shower drain. 'Is this normal? There's barely anything there.' It was the first hopeful text she'd sent me in months." },
-            { week: "Week 4", result: "Baby hairs along her temples. She kept sending me close-up photos. 'Are these real? Renée, are these actually real?'" },
-            { week: "Week 8", result: "She FaceTimed me wearing her hair down. First time in over a year. She didn't say anything about her hair. She was just... wearing it down. Like it was nothing. Like it was normal." },
-            { week: "Week 12", result: "She called me, and the first thing she said was: 'I forgot to think about my hair today. The whole day. I just forgot.'" },
           ].map((item) => (
             <div key={item.week} style={{ display: "flex", gap: "1rem", marginBottom: "0.75rem", alignItems: "flex-start" }}>
               <span style={{ fontFamily: "'DM Sans', sans-serif", fontWeight: 700, fontSize: "0.78rem", color: "#1B4D3E", background: "#C8DDD0", padding: "0.2rem 0.5rem", borderRadius: "3px", flexShrink: 0, whiteSpace: "nowrap" }}>{item.week}</span>
@@ -708,19 +738,6 @@ export default function Home() {
               </div>
             ))}
           </div>
-          <p style={{ fontFamily: "'DM Sans', sans-serif", fontWeight: 700, fontSize: "0.75rem", letterSpacing: "0.08em", textTransform: "uppercase", color: "#B8D4BC", marginBottom: "0.75rem" }}>
-            Compared to the "Gold Standard":
-          </p>
-          {[
-            { name: "Rogaine/Minoxidil", pct: "38% see improvement (with side effects)" },
-            { name: "Popular supplements", pct: "22% see mild improvement after 6 months" },
-            { name: "Biotin alone", pct: "11% see any change" },
-          ].map((item) => (
-            <div key={item.name} style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "0.4rem", flexWrap: "wrap", gap: "0.25rem" }}>
-              <span style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.85rem", color: "#C8DDD0" }}>✗ {item.name}</span>
-              <span style={{ fontFamily: "'DM Sans', sans-serif", fontWeight: 700, fontSize: "0.85rem", color: "#F08080" }}>{item.pct}</span>
-            </div>
-          ))}
         </div>
 
         <hr style={divider} />
@@ -750,19 +767,13 @@ export default function Home() {
           ))}
         </div>
 
-        <div style={{ background: "#F2F0EB", borderRadius: "6px", padding: "1.5rem", margin: "1.5rem 0", textAlign: "center" }}>
-          <p style={{ fontFamily: "'Playfair Display', serif", fontWeight: 700, fontSize: "1.3rem", color: "#1B4D3E", lineHeight: 1.4, margin: 0 }}>
-            "And somewhere in those 12 weeks, you'll have a morning where you wake up and something feels different. Not your hair. <em>You.</em> You forgot to check the drain. You forgot to angle away from the light. You forgot to worry."
-          </p>
-          <p style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.85rem", color: "#777", marginTop: "0.75rem", marginBottom: 0 }}>
-            That's not a product benefit. That's your life back.
-          </p>
-        </div>
-
         <hr style={divider} />
 
         {/* ─── SECTION: Offer ─── */}
         <h2 style={h2}>The Price of Making This Right</h2>
+
+        {/* Pricing image */}
+        <SectionImage src={IMG_PRICING} alt="Hair Helper Spray 60% off — $120 crossed out, now $33. What it should have cost all along." caption='"What it should have cost all along."' />
 
         <div style={body}>
           <p style={p}>I pushed for the lowest price we could survive on.</p>
@@ -786,7 +797,7 @@ export default function Home() {
             <div style={{ background: "white", padding: "0.5rem", borderRadius: "3px", border: "1px solid #E8E4DA" }}>Less than your monthly Rogaine refill</div>
             <div style={{ background: "white", padding: "0.5rem", borderRadius: "3px", border: "1px solid #E8E4DA" }}>Less than gas to the dermatologist</div>
           </div>
-          <p style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.85rem", color: "#555", marginBottom: "1rem" }}>
+          <p style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.85rem", color: "#555", marginBottom: "0" }}>
             Why the 3-month supply? Because most women see their best results at 12 weeks. Our lab produces 800 bottles per week. Our last promotion sold out in 11 hours. We have <strong>4,200 units at this price right now.</strong>
           </p>
         </div>
@@ -817,6 +828,9 @@ export default function Home() {
           <p style={p}>You've already trusted enough products that let you down. You've already felt the sting of opening a new bottle with hope and throwing it away three months later with nothing to show for it.</p>
           <p style={p}>The last thing I'm going to do is add financial risk to the emotional risk you've already been through.</p>
         </div>
+
+        {/* 120-Day Guarantee Seal */}
+        <SectionImage src={IMG_GUARANTEE_SEAL} alt="120 Day Money Back Guarantee — Official Certification of Promise, signed by Renée Halsted and Dr. Yolanda Holmes" caption="Signed by both Renée Halsted and Dr. Yolanda Holmes, MD, FAAD. Our personal promise." />
 
         <div style={{ background: "#1B4D3E", borderRadius: "6px", padding: "1.75rem", margin: "1.5rem 0" }}>
           <p style={{ fontFamily: "'Playfair Display', serif", fontWeight: 800, fontSize: "1.3rem", color: "white", marginBottom: "0.75rem" }}>
@@ -881,7 +895,7 @@ export default function Home() {
         </div>
 
         {/* P.S. Section */}
-        <div style={{ borderLeft: "4px solid #B8860B", paddingLeft: "1.25rem", margin: "2rem 0", background: "#FAF8F3", padding: "1.25rem 1.5rem" }}>
+        <div style={{ borderLeft: "4px solid #B8860B", margin: "2rem 0", background: "#FAF8F3", padding: "1.25rem 1.5rem" }}>
           <p style={{ fontFamily: "'Merriweather', serif", fontSize: "0.92rem", lineHeight: 1.75, color: "#333", marginBottom: "1rem" }}>
             <strong>P.S.</strong> — I'm still looking for Teresa. If you're out there — if you're the woman from chair 4 in Dayton who brought cookies on holidays and loved her kids more than anything and walked out of my salon twelve years ago — I'm sorry. This is for you. It was always for you.
           </p>
@@ -905,7 +919,7 @@ export default function Home() {
         {/* Disclaimer */}
         <div style={{ borderTop: "1px solid #D8D4CA", paddingTop: "1.5rem", marginTop: "2rem" }}>
           <p style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.72rem", color: "#999", lineHeight: 1.6, marginBottom: "0.75rem" }}>
-            <strong>MEDICAL &amp; HEALTH DISCLAIMER:</strong> The information and other content provided on this page, or in any linked materials, are not intended and should not be construed as medical advice, nor is the information a substitute for professional medical expertise or treatment. If you or any other person has a medical concern, you should consult with your health care provider or seek other professional medical treatment. Never disregard professional medical advice or delay in seeking it because of something you have read on this page or in any linked materials.
+            <strong>MEDICAL & HEALTH DISCLAIMER:</strong> The information and other content provided on this page, or in any linked materials, are not intended and should not be construed as medical advice, nor is the information a substitute for professional medical expertise or treatment. If you or any other person has a medical concern, you should consult with your health care provider or seek other professional medical treatment. Never disregard professional medical advice or delay in seeking it because of something you have read on this page or in any linked materials.
           </p>
           <p style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.72rem", color: "#999", lineHeight: 1.6, margin: 0 }}>
             These statements have not been evaluated by the Food and Drug Administration. This product is not intended to diagnose, treat, cure, or prevent any disease. Individual results may vary.
