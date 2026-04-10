@@ -882,9 +882,6 @@ export default function Home() {
         {/* ─── SECTION: A Letter to You ─── */}
         <h2 style={h2}>A Letter to You</h2>
 
-        {/* Letter-writing scene image — placed directly under headline */}
-        <SectionImage src={IMG_LETTER_WRITING} alt="Woman writing a heartfelt letter at a wooden desk by a window" caption="18 years of silence. One letter to end it." />
-
         <div style={body}>
           <p style={p}>I don't know your name.</p>
           <p style={p}>I don't know how long you've been losing your hair. I don't know how many products you've tried. How many bottles are under your bathroom sink right now. How many times you've been told to "just accept it" by someone who's never felt a clump of their own hair come loose in the shower.</p>
