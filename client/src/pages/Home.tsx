@@ -162,7 +162,7 @@ function CTABlock({ countdown }: { countdown: string }) {
         Regular price: <s>$120/bottle</s> → <strong style={{ color: "#1B4D3E" }}>$33/bottle</strong> (3-month supply, 60% off)
       </p>
       <a
-        href="https://trybello.com"
+        href="https://start.trybello.com/trybello-hair-helper-s1-a313-sp"
 style={{ display: "block", background: "#1B4D3E", color: "white", fontFamily: "'DM Sans', sans-serif", fontWeight: 700, fontSize: "1rem", letterSpacing: "0.06em", textTransform: "uppercase", textAlign: "center", padding: "1.1rem 2rem", borderRadius: "4px", textDecoration: "none", marginBottom: "1rem" }}
           >
             {"🔒 Claim My 60% Discount Now — Before It's Gone"}
@@ -964,7 +964,7 @@ export default function Home() {
 
         <div style={{ textAlign: "center", margin: "2rem 0" }}>
           <a
-            href="https://trybello.com"
+            href="https://start.trybello.com/trybello-hair-helper-s1-a313-sp"
             style={{ display: "inline-block", background: "#1B4D3E", color: "white", fontFamily: "'DM Sans', sans-serif", fontWeight: 700, fontSize: "0.9rem", letterSpacing: "0.08em", textTransform: "uppercase", padding: "1rem 2.5rem", borderRadius: "4px", textDecoration: "none" }}
           >
             🔒 Check Availability Now →
@@ -1019,7 +1019,7 @@ export default function Home() {
             </p>
           </div>
           <a
-            href="https://trybello.com"
+            href="https://start.trybello.com/trybello-hair-helper-s1-a313-sp"
             style={{ background: "#F0C040", color: "#1C1C1E", fontFamily: "'DM Sans', sans-serif", fontWeight: 700, fontSize: "0.85rem", letterSpacing: "0.05em", textTransform: "uppercase", padding: "0.65rem 1.5rem", borderRadius: "4px", textDecoration: "none", whiteSpace: "nowrap" }}
           >
             Claim 60% Off →
