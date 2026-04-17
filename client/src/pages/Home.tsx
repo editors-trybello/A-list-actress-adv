@@ -30,6 +30,7 @@ const IMG_CELEBRITY_VS      = "https://d2xsxph8kpxj0f.cloudfront.net/31051966352
 const IMG_DHT_STAGES        = "https://d2xsxph8kpxj0f.cloudfront.net/310519663529409853/3AEXRUJeuYifWExCNaLMLt/hf_20260408_132918_3477f5dc-225d-4f59-9064-3bc6009727b0_613c3740.png";
 const IMG_HOLLYWOOD_SET     = "https://d2xsxph8kpxj0f.cloudfront.net/310519663529409853/3AEXRUJeuYifWExCNaLMLt/hf_20260408_133431_492a1f39-faa7-4f37-af60-b20fa99d2572_3430b986.png";
 const IMG_BEFORE_AFTER_12W  = "https://d2xsxph8kpxj0f.cloudfront.net/310519663529409853/3AEXRUJeuYifWExCNaLMLt/hf_20260408_134147_08908866-2e97-4eab-95d5-e4fdb9bfe4bd_797b977d.png";
+const IMG_RENEE_PORTRAIT     = "https://d36hbw14aib5lz.cloudfront.net/310519663529409853/3AEXRUJeuYifWExCNaLMLt/renee-halsted-portrait-2Tr8cMdY354SynoPHM67Rn.webp?Expires=1807955981&Signature=MTEQVMg6WI5pk2h-mTmsIIhasteNZwjlkK5kqiTLacvR9uo0ACyvcT7VPrKemg6m4nNXKXhCBVHNPdmQ1Q-JpVAzeg9uDObCXkMrOcCirVBtEKDG6vWS9NGhuIneV4FWWDijnMwhwLGXR-YaYqDXVpNtfESHGc4K5vyI5ex1bPjERUKdL7hoBzOPsclIH4aSMmiskolc-ebOfyUPfPFsA81KOgLOR4vSauaQiA-LYwXbdHDlwnYWK9m6aDaadqnG1bEyjWPD8DrmLwMT4Siwh7uQuinTJy1gTejZ4aHrcNBqEfvuaugz6C3sBHI4IKoWXYO~m~1qU4oBN0zKWnZkdg__&Key-Pair-Id=K1MP89RTKNH4J";
 const IMG_DR_HOLMES_OFFICIAL = "https://d2xsxph8kpxj0f.cloudfront.net/310519663529409853/3AEXRUJeuYifWExCNaLMLt/dr-holmes-product-official_cf1d3127.webp";
 const IMG_WOMAN_IN_CHAIR4   = "https://d2xsxph8kpxj0f.cloudfront.net/310519663529409853/3AEXRUJeuYifWExCNaLMLt/adv-woman-in-chair4-exr7svjKMK2eR3yBSDe3sQ.webp";
 const IMG_TIMELINE_JOURNEY  = "https://d2xsxph8kpxj0f.cloudfront.net/310519663529409853/3AEXRUJeuYifWExCNaLMLt/adv-timeline-journey-2oMSksd9EdCtD238Xc5efb.webp";
@@ -290,9 +291,9 @@ export default function Home() {
           <div style={{ display: "flex", gap: "0.5rem" }}>
             <div style={{ position: "relative", width: "44px", height: "44px", flexShrink: 0 }}>
               <img
-                src={IMG_DR_HOLMES_PRODUCT}
+                src={IMG_RENEE_PORTRAIT}
                 alt="Renée Halsted"
-                style={{ width: "44px", height: "44px", borderRadius: "50%", objectFit: "cover", objectPosition: "right center", border: "2px solid white", display: "block" }}
+                style={{ width: "44px", height: "44px", borderRadius: "50%", objectFit: "cover", objectPosition: "center top", border: "2px solid white", display: "block" }}
               />
             </div>
             <div style={{ position: "relative", width: "44px", height: "44px", flexShrink: 0, marginLeft: "-12px" }}>
