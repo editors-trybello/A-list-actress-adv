@@ -17,7 +17,7 @@ const VID_PRODUCT_INTRO = "https://d2xsxph8kpxj0f.cloudfront.net/310519663529409
 const VID_RESULTS       = "https://d2xsxph8kpxj0f.cloudfront.net/310519663529409853/3AEXRUJeuYifWExCNaLMLt/hf_20260410_093111_67274f7b-769e-4b1f-8477-f16b0b96d5ed_08665034.mp4";
 
 // Images
-const IMG_DR_HOLMES_PRODUCT = "https://d2xsxph8kpxj0f.cloudfront.net/310519663529409853/3AEXRUJeuYifWExCNaLMLt/dryolandaholmes+trybellohairhelperspray_25a314ae.webp";
+const IMG_DR_HOLMES_PRODUCT = "https://d2xsxph8kpxj0f.cloudfront.net/310519663529409853/3AEXRUJeuYifWExCNaLMLt/dr-holmes-with-product_4bdfc30c.webp";
 const IMG_INGREDIENTS       = "https://d2xsxph8kpxj0f.cloudfront.net/310519663529409853/3AEXRUJeuYifWExCNaLMLt/trybelloingredients_c211e0e0.webp";
 const IMG_DR_HOLMES_LECTURE = "https://d2xsxph8kpxj0f.cloudfront.net/310519663529409853/3AEXRUJeuYifWExCNaLMLt/dryolandaholmes_ad94cf0f.jpeg";
 const IMG_GUARANTEE_SEAL    = "https://d2xsxph8kpxj0f.cloudfront.net/310519663529409853/3AEXRUJeuYifWExCNaLMLt/hf_20260408_133139_2051e41f-7abd-4b8c-97d7-98f69c244410_5c7a205f.png";
